@@ -1,0 +1,65 @@
+﻿@model ArtBiathlon.DataEntity.User
+
+<link rel="stylesheet" href="~/css/StyleSheet.css" />
+
+@if(User.Identity.IsAuthenticated)
+{
+    @using (Html.BeginForm("Subscribe", "Main", FormMethod.Get))
+    {
+        <input asp-controller="Main" asp-action="Subscribe" class="custom_button" type="submit" value="Подписка на рассылки" />
+    }
+    <div class="content_style">
+            <div class="card_biathlete">
+            <img class="containerS" src="../background/defaultBiathlete.jpg">
+                <h1 class="card_title_biathlete">@Model.FIO</h1>
+
+                <div class="information_biathlete">
+                    <br>
+                    <h1 class="contacts_value_biathlete">Личные данные</h1>
+                    <div class="personal_biathlete_information">
+                        <h5>Дата рождения: @Model.Date.ToShortDateString()</h5>
+                        <h5>Пол: @Model.Gender</h5>
+                        <h5>Статус:@Model.Status</h5>
+                        <h5>Звание:@Model.Rank</h5>
+                        <h5>Логин:@Model.Login</h5>
+                        <!-- <h5 style = "margin-bottom:-30px" >Пароль:</h5>  -->
+                    </div>
+                    <br>
+                </div>
+                <br>
+
+            <div class="information_biathlete">
+                    <br>
+                <h1 class="contacts_value_biathlete">Контактные данные</h1>
+                    <div class="personal_biathlete_information">
+                        <h5>Почта @Model.Email:</h5>
+                    </div>
+                    <br>
+                </div>
+            </div>
+
+        <div class="card_biathlete" style ="width: 400px">
+                <form method="post" asp-controller="Main" asp-action="SendEmail">
+                    <textarea name="message"></textarea><br />
+                    <input class="custom_button" name="message" type="text" /><br />
+                    <input class="custom_button" type="submit" value="Отправить">
+                </form>
+
+            @if (User.IsInRole("Trainer"))
+            {
+                <div>
+                    <h5 style="color: white">Статистика по рассылкам:</h5>
+                  
+                    @foreach(var pair in ViewBag.TitlesDictionary)
+                    {
+                        <h5 style ="color: white">@pair.Key: @pair.Value.Item1 (@pair.Value.Item2 пользователя) (@pair.Value.Item3 подписчика)</h5>
+                    }
+
+                </div>
+            }
+            </div>
+
+      
+    </div>
+}
+

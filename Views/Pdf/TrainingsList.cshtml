@@ -1,0 +1,52 @@
+﻿@model ArtBiathlon.DataEntity.TrainingType
+
+<link rel="stylesheet" href="~/css/PdfStyle.css" />
+
+<body>
+    @using (Html.BeginForm("TrainingsList", "Pdf", FormMethod.Post))
+    {
+        <div class="content">
+            <div class="card">
+                <h3>Виды тренировок: </h3>
+            </div>
+
+            @Html.DropDownListFor(x => x.Id, ViewBag.TrainingsTypeList as SelectList, new {@class = "topics"})
+            <input class="custom_button" type="submit" value="Выбрать" />
+        </div>
+    }
+
+    <table border="1">
+        <caption>Список тренировок </caption>
+        <tr>
+            <th>№</th>
+            <th>Вид тренировки</th>
+            <th>Тип тренировки</th>
+        </tr>
+        @foreach (var training in ViewBag.SelectTrainingList)
+        {
+            <tr>
+                <td>@training.Id</td>
+                <td>@training.NameType</td>
+                <td>@training.NameTraining</td>
+
+            </tr>
+        }
+    </table>
+
+    <form method="post" asp-controller="Pdf" asp-action="ExportTrainingListPdf">
+        <input type="hidden" name="ExportData" id="ExportData" />
+        <input type="submit" id="btnSubmit" value="Export" class="btn btn-primary" />
+    </form>
+</body>
+
+
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#btnSubmit").click(function () {
+            $("input[name='ExportData']").val($("#PrintPDF").html());
+        });
+    });
+</script>
+     </div>
+   </div> *@

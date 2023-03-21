@@ -1,0 +1,8 @@
+C:\Users\User\Desktop\ArtBiathlon\ArtBiathlon\obj\Release\net7.0\ArtBiathlon.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\ArtBiathlon\ArtBiathlon\obj\Release\net7.0\ArtBiathlon.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\ArtBiathlon\ArtBiathlon\obj\Release\net7.0\ArtBiathlon.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\ArtBiathlon\ArtBiathlon\obj\Release\net7.0\ArtBiathlon.AssemblyInfo.cs
+C:\Users\User\Desktop\ArtBiathlon\ArtBiathlon\obj\Release\net7.0\ArtBiathlon.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\ArtBiathlon\ArtBiathlon\obj\Release\net7.0\ArtBiathlon.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\User\Desktop\ArtBiathlon\ArtBiathlon\obj\Release\net7.0\ArtBiathlon.RazorAssemblyInfo.cache
+C:\Users\User\Desktop\ArtBiathlon\ArtBiathlon\obj\Release\net7.0\ArtBiathlon.RazorAssemblyInfo.cs

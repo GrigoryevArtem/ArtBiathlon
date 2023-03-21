@@ -1,0 +1,79 @@
+﻿<link rel="stylesheet" href="~/css/PdfStyle.css" />
+
+<body>
+    <div class="card">
+        <h3>HRV-показатели: </h3>
+    </div>
+    <table border="1">
+   <caption>HRV-показатели спортсмена </caption>
+
+   <tr>
+        <th>Дата</th>
+        <th>READINESS</th>
+        <th>RMSSD</th>
+        <th>RR</th>
+        <th>SDNN</th>
+        <th>SD1</th>
+        <th>TP</th>
+        <th>HF</th>
+        <th>LF</th>
+        <th>SI</th>
+        <th>LFHF</th>
+   </tr>
+        @foreach (var hrvIndicator in ViewBag.UserHrvIndicators)
+        {
+            <tr>
+                <td>@hrvIndicator.Date.ToShortDateString()</td>
+                <td>@hrvIndicator.READINESS.ToString("0.00")</td>
+                <td>@hrvIndicator.RMSSD</td>
+                <td>@hrvIndicator.RR</td>
+                <td>@hrvIndicator.SDNN</td>
+                <td>@hrvIndicator.SD1</td>
+                <td>@hrvIndicator.TP</td>
+                <td>@hrvIndicator.HF</td>
+                <td>@hrvIndicator.LF</td>
+                <td>@hrvIndicator.SI.ToString("0.00")</td>
+                <td>@hrvIndicator.LFHF.ToString("0.00")</td>
+            </tr>
+        }
+        @{
+        int i = 0;
+        }
+        @foreach (var hrvIndicator in ViewBag.userHrvIndicatorsResults)
+        {
+            <tr>
+                @if (i == 0)
+                {
+                <td>Минимальное значение</td>
+                }
+                else if (i == 1)
+                {
+                <td>Среднее значение значение</td>
+                }
+                else
+                {
+                <td>Максимальное значение</td>
+                }
+
+                <td>@hrvIndicator.READINESS.ToString("0.00")</td>
+                <td>@hrvIndicator.RMSSD.ToString("0.00")</td>
+                <td>@hrvIndicator.RR.ToString("0.00")</td>
+                <td>@hrvIndicator.SDNN.ToString("0.00")</td>
+                <td>@hrvIndicator.SD1.ToString("0.00")</td>
+                <td>@hrvIndicator.TP.ToString("0.00")</td>
+                <td>@hrvIndicator.HF.ToString("0.00")</td>
+                <td>@hrvIndicator.LF.ToString("0.00")</td>
+                <td>@hrvIndicator.SI.ToString("0.00")</td>
+                <td>@hrvIndicator.LFHF.ToString("0.00")</td>
+            </tr>
+
+            i++;    
+        }
+  </table>
+
+    <form method="post" asp-controller="Pdf" asp-action="ExportHrvIndicatorsPdf">
+        <input type="hidden" name="ExportData" id="ExportData" />
+        <input type="submit" id="btnSubmit" value="Export" class="btn btn-primary" />
+    </form>
+
+ </body>

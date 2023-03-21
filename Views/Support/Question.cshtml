@@ -1,0 +1,36 @@
+﻿@model List<HelpViewModel>
+
+<link rel="stylesheet" href="~/css/PersonalAccountStyle.css" />
+
+<div class="out_div">
+    <div class="div_for_trainings">
+          <h3>Вопросы</h3>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+                <div class="second_inner_div">
+                    <form autocomplete="on" method="post" asp-controller="Support" asp-action="Question">
+                        <table class="custom_table">
+                            <thead>
+                                <tr name="UserFIO">
+                                    <th colspan="3">@Model[i].UserFio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="font-weight:bold">
+                                <td>Дата</td>
+                                <td>Вопрос</td>
+                                <td>Ответ</td>
+                            </tr>
+                                <tr>
+                                    <td name="Date">@Model[i].Date.ToShortDateString()</td>
+                                    <td name="Question">@Model[i].Question</td>
+                                    <td name="Answer">@Model[i].Answer</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    <input asp-controller="Support" asp-action="Question" asp-route-id="@Model[i].Id" class="custom_button" style="width:1200px" type="submit" value="Ответить" />
+                    </form>
+                </div>
+        }
+    </div>
+</div>

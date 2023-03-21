@@ -1,0 +1,182 @@
+﻿@model List<MessageViewModel>
+
+<link rel="stylesheet" href="~/css/ForumStyle.css" />
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+<div class="card">
+    Форум
+</div>
+
+@if (User.Identity.IsAuthenticated)
+{
+    @using (Html.BeginForm("Send", "Forum", FormMethod.Post))
+    {
+        <div class="inner_div">
+            @Html.TextArea("message", "", new{@class = "custom_text"})
+            <input class="custom_button" type="submit" value="Отправить" />
+        </div>
+    }
+}
+
+<div class="inner_div">
+    @foreach (var message in Model)
+    {
+        <div id="***" class="mess" style="margin-left: @(message.NestingLevel * 70)px">
+            <div class="unifying_div">
+                <div class="user_icon">
+                    <img src="../background/defaultBiathlete.jpg">
+                </div>
+                <div class="user_fullname">
+                    <h4 style="margin-left: 20px">@message.Fullname</h4>
+                    <h6 style =" color: gray"> @message.Date </h6>
+                </div>
+            </div>
+
+            <h5 style="margin-left: 25px ">@message.Message</h5>
+
+            <div class="unifying_div">
+                <form method="post" asp-controller="Forum" asp-action="MessageReaction">
+
+                    <button id="ok" asp-controller="Forum" asp-action="MessageReaction" class="ghost-button-rounded-corners" type="submit"
+                        asp-route-messageId="@message.Id" asp-route-isLike="@true" data-messageId="@message.Id" data-isLike="@true">
+                        <i class='fa fa-thumbs-o-up'>
+                            @message.LikedUsers.Count
+                        </i>
+                    </button>
+
+                </form>
+                <form method="post" asp-controller="Forum" asp-action="MessageReaction">
+                    <button id="ok" asp-controller="Forum" asp-action="MessageReaction" class="ghost-button-rounded-corners" type="submit"
+                        asp-route-messageId="@message.Id" asp-route-isLike="@false" data-messageId="@message.Id" data-isLike="@false">
+                        <i class='fa fa-thumbs-o-down'>
+                            @message.DislikedUsers.Count
+                        </i>
+                    </button>
+                </form>
+
+                <details class="modal-open">
+
+                    <summary class="btn btn-primary">
+                        <i class='fa fa-heart'></i>
+                        </summary>
+
+                    <div class="modal show" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Статистика </h5>
+                                    <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                   
+                                        <table class="custom_table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Лайки</th>
+                                                    <th>Дизлайки</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @{
+                                                    int maxSize = Math.Max(message.LikedUsers.Count, message.DislikedUsers.Count);
+                                                }
+                                                @for (int i = 0; i < maxSize; i++)
+                                                {
+                                                    <tr>
+                                                        <td>@(message.LikedUsers.Count > i ? message.LikedUsers[i].FIO : string.Empty)</td>
+                                                        <td>@(message.DislikedUsers.Count > i ? message.DislikedUsers[i].FIO : string.Empty)</td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                   
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="modal-open">
+
+                    <summary class="btn btn-primary">
+                        <i class='fa fa-comment-o'></i>
+                    </summary>
+
+                    <div class="modal show" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Ответ на сообщение </h5>
+                                    <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    @using (Html.BeginForm("SendComment", "Forum", FormMethod.Post))
+                                    {
+                                        @Html.TextArea("message", "", new{@class = "custom_text"})
+                                        <input asp-controller="Forum" asp-action="SendComment" asp-route-messageId="@message.Id"
+                                       class="custom_button" type="submit" value="Отправить" />
+                                    }
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+                @*<form method="post" asp-controller="Forum" asp-action="Answer">
+            <i class='fa fa-comment-o'> Ответить
+
+            </i>
+            </form>
+            <form method="post" asp-controller="Forum" asp-action="Comments">
+            <i class='fa fa-sort-desc'>
+
+            </i>
+            </form>*@
+            </div>
+            <details>
+                <summary>
+                    <i class='fa fa-comment-o'></i>
+                </summary>
+                @using (Html.BeginForm("SendComment", "Forum", FormMethod.Post))
+                {
+                    @Html.TextArea("message", "", new{@class = "custom_text"})
+                    <input asp-controller="Forum" asp-action="SendComment" asp-route-messageId="@message.Id"
+                   class="custom_button" type="submit" value="Отправить" />
+                }
+            </details>
+        </div>
+    }
+</div>
+
+
+
+@section Scripts
+    {
+    <script >
+    document.querySelectorAll('.close-modal').forEach(el => {
+  el.onclick = () => {
+    const details = el.closest('details')
+    details.open = !details.open
+  }
+})
+
+document.querySelectorAll('.open-modal').forEach(el => {
+  el.onclick = () => {
+    const details = document.body.querySelector('details')
+    details.open = true
+  }
+})
+</script>
+}

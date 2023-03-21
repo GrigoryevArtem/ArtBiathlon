@@ -1,0 +1,20 @@
+﻿@model AuthorizationModel
+<head>
+    <link rel="stylesheet" href="~/css/CustomStyle.css" />
+</head>
+<body>
+    <div class="custom_div">
+        <div class="container">
+            <img src="../background/biathleteIcon.jpg">
+        </div>
+        <h1 class="custom_h1">Авторизация в ArtBiathlon</h1>
+        <form autocomplete="on" method="post" asp-controller="Account" asp-action="Login">
+            <input asp-for="Login" class="custom_input" type="text" placeholder="Логин" /><br />
+            <input asp-for="Password" class="custom_input" type="password" placeholder="Пароль" /><br />
+            <input asp-controller="Account" asp-action="Login" class="custom_button" type="submit" value="Войти" />
+            <div class="ref">
+                <a href="#" style="color: rgba(255,255,255,1)">Восстановить пароль</a>
+            </div>
+        </form>
+    </div>
+</body>

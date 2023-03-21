@@ -1,0 +1,34 @@
+﻿@*<link rel="stylesheet" href="~/css/ForumStyle.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+<div class="unifying_div">
+    <form method="post" asp-controller="Forum" asp-action="MessageReaction">
+
+        <button class="ghost-button-rounded-corners" type="submit" asp-route-messageId="@message.Id" asp-route-isLike="@true">
+            <i class='fa fa-thumbs-o-up'>
+                @message.LikedUsers.Count
+            </i>
+        </button>
+
+    </form>
+    <form method="post" asp-controller="Forum" asp-action="MessageReaction">
+        <button class="ghost-button-rounded-corners" type="submit" asp-route-messageId="@message.Id" asp-route-isLike="@false">
+            <i class='fa fa-thumbs-o-down'>
+                @message.DislikedUsers.Count
+            </i>
+        </button>
+    </form>
+    <form method="post" asp-controller="Forum" asp-action="Answer">
+        <i class='fa fa-comment-o'>
+            Ответить
+
+        </i>
+    </form>
+    <form method="post" asp-controller="Forum" asp-action="Comments">
+        <i class='fa fa-sort-desc'>
+
+        </i>
+    </form>
+    
+</div>*@

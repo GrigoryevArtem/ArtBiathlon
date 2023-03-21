@@ -1,0 +1,16 @@
+﻿@model ArtBiathlon.DataEntity.MailingTopic
+@{
+}
+
+<link rel="stylesheet" href="~/css/SupportStyle.css" />
+
+@using (Html.BeginForm("Subscribe", "Main", FormMethod.Post))
+{
+        <div class="first_inner_div">
+            <div class = "card_div">
+                    <h3>Подписка на рассылки</h3>
+            </div>
+        @Html.ListBox("titles", ViewBag.Titles as MultiSelectList)
+            <input class="custom_button" type="submit" value="Отправить" />
+        </div>
+}

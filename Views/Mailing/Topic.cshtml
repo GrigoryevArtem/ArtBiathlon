@@ -1,0 +1,55 @@
+﻿@model ArtBiathlon.DataEntity.MailingTopic
+@{
+}
+
+<link rel="stylesheet" href="~/css/SupportStyle.css" />
+<body>
+@using (Html.BeginForm("Topic", "Admin", FormMethod.Post))
+{
+    <div class="content">
+        <div class="card">
+            <h3>Рассылка сообщений</h3>
+        </div>
+
+            @Html.DropDownListFor(x => x.Id, ViewBag.Mailings as SelectList, new {@class = "topics"})
+        @Html.TextArea("message","",new {@class = "custom_text"})
+        <input class="custom_button" type="submit" value="Отправить" />
+    </div>
+}
+
+@using (Html.BeginForm("DeleteTopic", "Admin", FormMethod.Post))
+{
+    <div class="content2">
+        <div class="card">
+            <h3>Удаление рассылки</h3>
+        </div>
+            @Html.DropDownListFor(x => x.Id, ViewBag.Mailings as SelectList, new {@class = "topics"})
+    <input class="custom_button" type="submit" value="Удалить" />
+    </div>
+}
+
+
+@using (Html.BeginForm("AddTopic", "Admin", FormMethod.Post))
+{
+        <div class="content2">
+        <div class="card">
+            <h3>Добавление рассылки</h3>
+        </div>
+            @Html.TextBox("newTopic","", new {@class= "text-input-new-topic"})
+             <input class="custom_button" type="submit" value="Добавить" />
+      </div>
+}
+
+@using (Html.BeginForm("UpdateTopic", "Admin", FormMethod.Post))
+{
+    <div class="content2">
+        <div class="card">
+            <h3>Редактирование рассылки</h3>
+        </div>
+            @Html.DropDownListFor(x => x.Id, ViewBag.Mailings as SelectList, new {@class = "topics"})
+            @Html.TextBox("updateTopic","",new {@class = "text-input-new-topic"})
+    <input class="custom_button" type="submit" value="Изменить" />
+    </div>
+}
+
+</body>

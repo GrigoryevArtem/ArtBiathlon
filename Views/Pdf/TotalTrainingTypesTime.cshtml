@@ -1,0 +1,67 @@
+﻿@using ArtBiathlon.DataEntity;
+@model TimeInterval;
+
+<link rel="stylesheet" href="~/css/PdfStyle.css" />
+
+<body>
+    <div class="card">
+        <h3>Общее тренировочное время по сборам: </h3>
+    </div>
+
+    <form autocomplete="on" method="get" asp-controller="Pdf" asp-action="TotalTrainingTypesTime">
+        <div class = "unifying_div">        
+            <input asp-for="StartIntervalTime" type="date"/>
+            <input asp-for="EndIntervalTime" type="date"/>
+        </div>
+         <input asp-controller="Pdf" asp-action="TotalTrainingTypesTime" class="custom_button" type="submit" value="Выбрать" />
+     </form>
+
+    <table border="1">
+        <caption>Общее время по разделам </caption>
+        <tr>
+            <th>Вид Тренировки</th>
+            <th>Общее врмя</th>
+        </tr>
+
+        @{
+            TimeSpan totalTimeInCampPeriod;
+            TimeSpan totalTimeForAllCampPeriods = new TimeSpan();
+        }
+
+        @foreach (var trainingTotal in ViewBag.GetAllTotalTrainingTypesTime as Dictionary<CampPeriod, List<TotalTrainingTypesDurationViewModel>>)
+        {
+            totalTimeInCampPeriod = new TimeSpan(); 
+            <tr>
+                <th colspan=2 style="text-align: center;">
+                    @trainingTotal.Key.Start.ToShortDateString() - @trainingTotal.Key.End.ToShortDateString()
+                </th>
+            </tr>
+            foreach (var type in trainingTotal.Value)
+            {
+                <tr>
+                    <td>@type.TypeName</td>
+                    <td>@type.TotalDuration</td>
+                </tr>
+                totalTimeInCampPeriod += type.TotalDuration;
+            }
+                <tr>
+                    <th>Итоговое время</th>
+                    <th>@totalTimeInCampPeriod</th>
+                 </tr>
+
+            totalTimeForAllCampPeriods += totalTimeInCampPeriod;
+        }
+
+        <tr>
+            <th>Итоговое общее время</th>
+            <th>@totalTimeForAllCampPeriods</th>
+        </tr>
+
+    </table>
+
+    <form method="post" asp-controller="Pdf" asp-action="ExportTotalTrainingTypesTimePdf">
+        <input type="hidden" name="ExportData" id="ExportData" />
+        <input type="submit" id="btnSubmit" value="Export" class="btn btn-primary" />
+    </form>
+
+</body>

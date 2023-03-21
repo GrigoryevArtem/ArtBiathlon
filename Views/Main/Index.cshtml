@@ -1,0 +1,11 @@
+﻿<link rel="stylesheet" href="~/css/MainStyle.css" />
+
+@if(User.Identity.IsAuthenticated)
+{
+    <div class="custom_div">
+        <a asp-controller="Main" asp-action="PersonalAccount">Личный кабинет</a>
+        <form method="post" asp-controller="Account" asp-action="Logout">
+            <input type="submit" value="Выход" />
+        </form>
+    </div>
+}

@@ -1,0 +1,97 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = ArtBiathlon
+build_property.RootNamespace = ArtBiathlon
+build_property.ProjectDir = C:\Users\User\Desktop\ArtBiathlon\ArtBiathlon\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\User\Desktop\ArtBiathlon\ArtBiathlon
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/User/Desktop/ArtBiathlon/ArtBiathlon/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/ArtBiathlon/ArtBiathlon/Views/Admin/MailingTopic.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTWFpbGluZ1RvcGljLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/ArtBiathlon/ArtBiathlon/Views/Admin/Topic.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVG9waWMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/ArtBiathlon/ArtBiathlon/Views/Forum/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ydW1cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/ArtBiathlon/ArtBiathlon/Views/Forum/MessageReaction.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ydW1cTWVzc2FnZVJlYWN0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/ArtBiathlon/ArtBiathlon/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/ArtBiathlon/ArtBiathlon/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/ArtBiathlon/ArtBiathlon/Views/Main/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpblxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/ArtBiathlon/ArtBiathlon/Views/Main/PersonalAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpblxQZXJzb25hbEFjY291bnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/ArtBiathlon/ArtBiathlon/Views/Main/Subscribe.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpblxTdWJzY3JpYmUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/ArtBiathlon/ArtBiathlon/Views/Pdf/HRVIndicatorsResults.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGRmXEhSVkluZGljYXRvcnNSZXN1bHRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/ArtBiathlon/ArtBiathlon/Views/Pdf/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGRmXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/ArtBiathlon/ArtBiathlon/Views/Pdf/TrainingsList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGRmXFRyYWluaW5nc0xpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/ArtBiathlon/ArtBiathlon/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/ArtBiathlon/ArtBiathlon/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/ArtBiathlon/ArtBiathlon/Views/Support/Answer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3VwcG9ydFxBbnN3ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/ArtBiathlon/ArtBiathlon/Views/Support/Question.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3VwcG9ydFxRdWVzdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/ArtBiathlon/ArtBiathlon/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/ArtBiathlon/ArtBiathlon/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/ArtBiathlon/ArtBiathlon/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-hdnky1y7e7
