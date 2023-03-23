@@ -43,6 +43,10 @@
               "target": "Package",
               "version": "[7.0.4, )"
             },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
             "itextsharp.xmlworker": {
               "target": "Package",
               "version": "[5.5.13.3, )"

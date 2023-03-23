@@ -146,3 +146,4 @@ C:/Users/User/Desktop/ArtBiathlon/ArtBiathlon/obj/Debug/net7.0/ref/ArtBiathlon.d
 /Users/artem/Projects/ArtBiathlon/ArtBiathlon/obj/Debug/net7.0/ArtBiathlon.pdb
 /Users/artem/Projects/ArtBiathlon/ArtBiathlon/obj/Debug/net7.0/ArtBiathlon.genruntimeconfig.cache
 /Users/artem/Projects/ArtBiathlon/ArtBiathlon/obj/Debug/net7.0/ref/ArtBiathlon.dll
+/Users/artem/Projects/ArtBiathlon/ArtBiathlon/bin/Debug/net7.0/Newtonsoft.Json.dll

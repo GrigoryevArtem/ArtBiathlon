@@ -46,7 +46,7 @@ namespace ArtBiathlon.Controllers
             return View(model);
         }
 
-        /*[HttpGet]
+        [HttpGet]
         public IActionResult Register()
         {
             return View();
@@ -75,7 +75,7 @@ namespace ArtBiathlon.Controllers
 
             return View(model);
         }
-*/
+
         
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()

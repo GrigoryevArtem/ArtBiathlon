@@ -55,7 +55,7 @@ namespace ArtBiathlon.Controllers
         public IActionResult TrainingsList(int id)
         {
             _id = id;
-            var trainingsTypeList = _context.TrainingTypes.Select(x => x.NameType).ToList();
+            //var trainingsTypeList = _context.TrainingTypes.Select(x => x.NameType).ToList();
             var selectTrainingList = SelectTrainingList(_id);
 
             var trainingsTypes = _context.TrainingTypes.ToList();

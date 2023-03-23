@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "zVf1PLB99pFzGJ6gd11W9CB1UBz/hz2eh1CBTiyiHyg=",
+  "Hash": "X2X96sJw6yRnZbOazx46X+1EkqGWjiKlA1+c2GwMS9Q=",
   "Source": "ArtBiathlon",
   "BasePath": "_content/ArtBiathlon",
   "Mode": "Default",
@@ -134,6 +134,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/ForumStyle.css"
+    },
+    {
+      "Identity": "/Users/artem/Projects/ArtBiathlon/ArtBiathlon/wwwroot/css/GraphicsStyle.css",
+      "SourceId": "ArtBiathlon",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/artem/Projects/ArtBiathlon/ArtBiathlon/wwwroot/",
+      "BasePath": "_content/ArtBiathlon",
+      "RelativePath": "css/GraphicsStyle.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/GraphicsStyle.css"
     },
     {
       "Identity": "/Users/artem/Projects/ArtBiathlon/ArtBiathlon/wwwroot/css/MainStyle.css",

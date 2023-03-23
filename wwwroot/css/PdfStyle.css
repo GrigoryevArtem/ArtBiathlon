@@ -143,17 +143,16 @@ details {
 	display: block;
 }
 
-body {
-	padding: 2rem 5rem;
-}
-
 .custom_table {
 	border-collapse: collapse;
 	border: 2px solid rgb(200,200,200);
 	letter-spacing: 1px;
 	font-size: 0.8rem;
+	margin-bottom: 50px;
 }
-
+body {
+	padding: 2rem 5rem;
+}
 
 td, th {
 	border: 1px solid rgb(190,190,190);
@@ -179,7 +178,6 @@ tr:nth-child(odd) td {
 caption {
 	padding: 10px;
 }
-
 
 .topics {
 	margin: 40px 0px 0px 0px;

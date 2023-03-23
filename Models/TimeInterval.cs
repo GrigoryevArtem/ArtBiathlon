@@ -4,6 +4,5 @@
     {
         public DateTime StartIntervalTime { get; set; }
         public DateTime EndIntervalTime { get; set; }
-
     }
 }

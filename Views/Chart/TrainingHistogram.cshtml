@@ -1,0 +1,89 @@
+@model ArtBiathlon.DataEntity.TrainingType
+
+<link rel="stylesheet" href="~/css/GraphicsStyle.css" />
+
+<body>
+
+@using (Html.BeginForm("TrainingHistogram", "Chart", FormMethod.Post))
+{
+    <div class="content">
+        <div class="card">
+            <h3>Количество тренировок по каждому типу по выбранном виду</h3>
+        </div>
+
+        @Html.DropDownListFor(x => x.Id, ViewBag.TrainingTypes as SelectList, new {@class = "topics"})
+        <input class="custom_button" type="submit" value="Выбрать" />
+    </div>
+}
+
+<table>
+    
+    <tr>
+        <th>Вид тренировки</th>
+        <th>Количество тренировок</th>
+    </tr>
+
+    @if (ViewBag.Trainings is not null)
+    {
+        @foreach (var i in ViewBag.Trainings as Dictionary<string, int>)
+        {
+            <tr>
+                <td>@i.Key</td>
+                <td>@i.Value</td>
+
+            </tr>
+        }
+    }
+</table>
+
+<div id="chart" ></div>
+
+</body>
+
+@if (ViewBag.Trainings is not null)
+{
+    @section Scripts
+    {
+        <script>
+        var temp1 = '@ViewBag.dataj';
+        var datass = JSON.parse(temp1)
+        </script>
+        
+        
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        
+            <script type="text/javascript">
+        
+              // Load the Visualization API and the corechart package.
+              google.charts.load('current', {'packages':['corechart']});
+        
+              // Set a callback to run when the Google Visualization API is loaded.
+              google.charts.setOnLoadCallback(drawChart);
+        
+              // Callback that creates and populates a data table,
+              // instantiates the pie chart, passes in the data and
+              // draws it.
+          function drawChart() {
+    
+          var data = new google.visualization.DataTable();
+                         data.addColumn('string', 'Тренировка');
+                           data.addColumn('number', 'Количество тренировок');
+                           data.addRows(datass);
+               
+        
+                  var options = {
+                    title : 'Количество тренировок по каждому виду',
+                    vAxis: {title: 'Кол-во тренировок'},
+                    hAxis: {title: 'Тип тренировки'},
+                    seriesType: 'bars',
+                    series: {5: {type: 'line'}},
+                    height: 500
+                  };
+
+            // Instantiate and draw our chart, passing in some options.
+             var chart = new google.visualization.ComboChart(document.getElementById('chart'));
+                   chart.draw(data, options);
+          }
+        </script>
+    }
+}

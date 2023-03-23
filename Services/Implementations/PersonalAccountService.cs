@@ -11,9 +11,6 @@ namespace ArtBiathlon.Services.Implementations
     public class PersonalAccountService : IPersonalAccountService
     {
         private readonly IBaseRepository<User> _userRepository;
-       // private readonly IBaseRepository<Training> _trainingRepository;
-        //private readonly IBaseRepository<Indicator> _indicatorRepository;
-        //private readonly IBaseRepository<TrainingTemplate> _trainingTemplateRepository;
         private readonly IBaseRepository<MailingTopic> _mailingTopicRepository;
         private readonly IBaseRepository<MailingTopicSubscriber> _mailingTopicSubscriberRepository;
         private readonly ILogger<PersonalAccountService> _logger;

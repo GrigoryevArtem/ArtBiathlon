@@ -38,7 +38,7 @@
             <div class="unifying_div">
                 <form method="post" asp-controller="Forum" asp-action="MessageReaction">
 
-                    <button id="ok" asp-controller="Forum" asp-action="MessageReaction" class="ghost-button-rounded-corners" type="submit"
+                    <button id="ok" asp-controller="Forum" asp-action="MessageReaction" class="btn btn-primary" type="submit"
                         asp-route-messageId="@message.Id" asp-route-isLike="@true" data-messageId="@message.Id" data-isLike="@true">
                         <i class='fa fa-thumbs-o-up'>
                             @message.LikedUsers.Count
@@ -47,7 +47,7 @@
 
                 </form>
                 <form method="post" asp-controller="Forum" asp-action="MessageReaction">
-                    <button id="ok" asp-controller="Forum" asp-action="MessageReaction" class="ghost-button-rounded-corners" type="submit"
+                    <button id="ok" asp-controller="Forum" asp-action="MessageReaction" class="btn btn-primary" type="submit"
                         asp-route-messageId="@message.Id" asp-route-isLike="@false" data-messageId="@message.Id" data-isLike="@false">
                         <i class='fa fa-thumbs-o-down'>
                             @message.DislikedUsers.Count
@@ -134,28 +134,9 @@
                         </div>
                     </div>
                 </details>
-                @*<form method="post" asp-controller="Forum" asp-action="Answer">
-            <i class='fa fa-comment-o'> Ответить
-
-            </i>
-            </form>
-            <form method="post" asp-controller="Forum" asp-action="Comments">
-            <i class='fa fa-sort-desc'>
-
-            </i>
-            </form>*@
+           
             </div>
-            <details>
-                <summary>
-                    <i class='fa fa-comment-o'></i>
-                </summary>
-                @using (Html.BeginForm("SendComment", "Forum", FormMethod.Post))
-                {
-                    @Html.TextArea("message", "", new{@class = "custom_text"})
-                    <input asp-controller="Forum" asp-action="SendComment" asp-route-messageId="@message.Id"
-                   class="custom_button" type="submit" value="Отправить" />
-                }
-            </details>
+           
         </div>
     }
 </div>

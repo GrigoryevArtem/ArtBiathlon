@@ -25,6 +25,10 @@
       "PackagePath": "staticwebassets/css/ForumStyle.css"
     },
     {
+      "Id": "/Users/artem/Projects/ArtBiathlon/ArtBiathlon/wwwroot/css/GraphicsStyle.css",
+      "PackagePath": "staticwebassets/css/GraphicsStyle.css"
+    },
+    {
       "Id": "/Users/artem/Projects/ArtBiathlon/ArtBiathlon/wwwroot/css/MainStyle.css",
       "PackagePath": "staticwebassets/css/MainStyle.css"
     },
