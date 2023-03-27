@@ -72,7 +72,7 @@ namespace ArtBiathlon.Services.Implementations
 
                 await sender.Send("Ответ на вопрос", $"Администратор дал ответ на ваш вопрос.\nВопрос: {model.Question}\nОтвет: {model.Answer}");
 
-                _helpRepository.Update(model);
+                await _helpRepository.Update(model);
 
                 return new BaseResponse<bool>
                 {
@@ -105,8 +105,8 @@ namespace ArtBiathlon.Services.Implementations
                         Date = help.Date,
                         Id = help.Id,
                         UserFio = _userRepository
-                        .GetAll()
-                        .FirstOrDefault(user => user.Id == help.UserId)
+                            .GetAll()
+                            .FirstOrDefault(user => user.Id == help.UserId)!
                         .FIO
                     })
                     .OrderBy(x => x.Answer == null)
@@ -139,7 +139,7 @@ namespace ArtBiathlon.Services.Implementations
                     {
                         Title = t.Title,
                         SubscribeCount = _mailingRepository.GetAll().Count(x => x.MailingTopicId == t.Id),
-                        UserCount = _mailingTopicSubscriberRepository.GetAll().Where(x => x.MailingTopicId == t.Id).Count(),
+                        UserCount = _mailingTopicSubscriberRepository.GetAll().Count(x => x.MailingTopicId == t.Id),
                         Subscribers = _mailingTopicSubscriberRepository.GetAll().Where(x => x.MailingTopicId == t.Id).GroupBy(x => x.UserId)
                     })
                     .GroupBy(x => x.Title, x => new { x.SubscribeCount, x.UserCount, x.Subscribers })

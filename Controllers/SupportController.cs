@@ -20,9 +20,7 @@ namespace ArtBiathlon.Controllers
         [HttpGet]
         public IActionResult Question()
         {
-            var list = new List<HelpViewModel>();
-
-            list = (from help in _context.Helps
+            var helpViewModels = (from help in _context.Helps
                     select new HelpViewModel
                     {
                         UserId = help.UserId,
@@ -33,7 +31,7 @@ namespace ArtBiathlon.Controllers
                         UserFio = _context.Users.FirstOrDefault(user => user.Id == help.UserId).FIO
                     }).OrderBy(x => x.Answer == null).ToList();
 
-            return View(list);
+            return View(helpViewModels);
         }
 
         [HttpPost]

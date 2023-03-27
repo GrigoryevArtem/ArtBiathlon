@@ -3296,6 +3296,7 @@
     "net7.0": [
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.4",
       "Newtonsoft.Json >= 13.0.3",
+      "iTextSharp >= 5.5.13.3",
       "itextsharp.xmlworker >= 5.5.13.3"
     ]
   },
@@ -3344,6 +3345,10 @@
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.3, )"
+          },
+          "iTextSharp": {
+            "target": "Package",
+            "version": "[5.5.13.3, )"
           },
           "itextsharp.xmlworker": {
             "target": "Package",

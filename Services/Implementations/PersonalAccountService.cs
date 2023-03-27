@@ -43,7 +43,7 @@ namespace ArtBiathlon.Services.Implementations
 
                 for (int i = 0; i < indexes.Count; i++)
                 {
-                    _mailingTopicSubscriberRepository.Create(new MailingTopicSubscriber { MailingTopicId = indexes[i], UserId = (int)user.Id });
+                    await _mailingTopicSubscriberRepository.Create(new MailingTopicSubscriber { MailingTopicId = indexes[i], UserId = (int)user.Id });
                 }
 
                 return new BaseResponse<bool>

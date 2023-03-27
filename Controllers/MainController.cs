@@ -35,7 +35,7 @@ namespace ArtBiathlon.Controllers
             {
                 TitleTopic = t.Title,
                 SubscribeCount = _context.Mailings.Count(x => x.MailingTopicId == t.Id),
-                UsersCount = _context.MailingTopicSubscribers.Where(x => x.MailingTopicId == t.Id).Count(),
+                UsersCount = _context.MailingTopicSubscribers.Count(x => x.MailingTopicId == t.Id),
                 Subscribers = _context.MailingTopicSubscribers.Where(x => x.MailingTopicId == t.Id).GroupBy(x => x.UserId).Count()
             }).ToDictionary(x => x.TitleTopic, x => (x.SubscribeCount, x.UsersCount, x.Subscribers));
 
@@ -73,9 +73,9 @@ namespace ArtBiathlon.Controllers
 
             var indexes = titles.Where(x => !ids.Contains(x)).ToList();
 
-            for (int i = 0; i < indexes.Count; i++)
+            foreach (var t in indexes)
             {
-                _context.MailingTopicSubscribers.Add(new MailingTopicSubscriber { MailingTopicId = (int)indexes[i], UserId = (int)userId });
+                _context.MailingTopicSubscribers.Add(new MailingTopicSubscriber { MailingTopicId = (int)t, UserId = (int)userId });
             }
 
             await _context.SaveChangesAsync();

@@ -20,7 +20,6 @@ namespace WebRunApplication.Controllers
         public async Task<IActionResult> Index()
         {
             var forumMessages = await GetForumMessages();
-            //ViewBag.ForumMessages = forumMessages;
             return View(forumMessages);
         }
 
@@ -77,7 +76,6 @@ namespace WebRunApplication.Controllers
 
         [HttpPost]
         [Authorize]
-        //[NonAction]
         public async Task<IActionResult> Send(string message)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Login == User.Identity.Name);
@@ -128,10 +126,7 @@ namespace WebRunApplication.Controllers
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Index", "Forum");
-
-            //var forum = await GetForumMessages();
-
-            //return PartialView(forum);
+            
         }
 
         [HttpPost, Authorize]

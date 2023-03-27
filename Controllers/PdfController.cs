@@ -23,7 +23,7 @@ namespace ArtBiathlon.Controllers
         }
 
         [HttpGet]
-        public IActionResult HRVIndicatorsResults()
+        public IActionResult HrvIndicatorsResults()
         {   
             var userHrvIndicators = GetUserHrvIndicators();
             var userHrvIndicatorsResults = GetHRVIndicatorResults();
@@ -36,14 +36,8 @@ namespace ArtBiathlon.Controllers
         [HttpGet]
         public IActionResult TrainingsList()
         {
-            var trainingsTypeList = _context.TrainingTypes.Select(x => x.NameType).ToList();
             var selectTrainingList = SelectTrainingList(null);
-
-            //
-            
             var trainingsTypes = _context.TrainingTypes.ToList();
-
-
 
             ViewBag.TrainingsTypeList = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(trainingsTypes, "Id", "NameType");
             ViewBag.SelectTrainingList = selectTrainingList;
@@ -55,7 +49,6 @@ namespace ArtBiathlon.Controllers
         public IActionResult TrainingsList(int id)
         {
             _id = id;
-            //var trainingsTypeList = _context.TrainingTypes.Select(x => x.NameType).ToList();
             var selectTrainingList = SelectTrainingList(_id);
 
             var trainingsTypes = _context.TrainingTypes.ToList();
@@ -85,14 +78,14 @@ namespace ArtBiathlon.Controllers
             }
 
             var selectTrainingList = trainingsViewModelList
-                .Where(x => x.NameType == _context.TrainingTypes.FirstOrDefault( y => y.Id == id).NameType)
+                .Where(x => x.NameType == _context.TrainingTypes.FirstOrDefault( y => y.Id == id)?.NameType)
                 .ToList();
 
             return selectTrainingList;
         }
 
         [HttpPost]
-        public FileResult ExportHrvIndicatorsPdf(string ExportData)
+        public FileResult ExportHrvIndicatorsPdf()
         {
             Document Doc = new Document(PageSize.LETTER);
 
@@ -114,8 +107,9 @@ namespace ArtBiathlon.Controllers
 
                 int columnCount = typeof(HrvIndicator).GetProperties().Length - 1;
                 PdfPTable table = new PdfPTable(columnCount);
-
-
+                table.SetWidths(new float[]{6f, 6f, 4f, 5f, 4f, 4f, 5f, 5f, 5f, 3f, 3f});
+                table.WidthPercentage = 110f;
+                
                 PdfPTable table1 = new PdfPTable(1);
                 Font font2 = new Font(bf, 20, Font.BOLD);
                 //Set the biography  
@@ -144,7 +138,8 @@ namespace ArtBiathlon.Controllers
                
                 cell.HorizontalAlignment = 1; //0=Left, 1=Centre, 2=Right
                 table.AddCell(cell);
-
+                
+                
                 table.AddCell("Date");
                 table.AddCell("READINESS");
                 table.AddCell("RMSSD");
@@ -333,12 +328,7 @@ namespace ArtBiathlon.Controllers
 
             return hrvIndicatorsResults;
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
- 
-
+        
         [NonAction]
         private List<TotalTrainingTypesDurationViewModel> GetTotalTrainingTypesTime(int campId, TimeInterval ? timeInterval = null)
         {
@@ -356,32 +346,13 @@ namespace ArtBiathlon.Controllers
                     TotalDuration = new TimeSpan(0, (int)x.Sum(y => y.Duration), 0),
                 }).ToList();
 
-            //.Where(x => (timeInterval != null) ? (x.p.Date >= timeInterval.StartIntervalTime && x.p.Date <= timeInterval.EndIntervalTime) : true )
-
             return list;
         }
 
         [NonAction]
         private Dictionary<CampPeriod, List<TotalTrainingTypesDurationViewModel>> GetAllTotalTrainingTypesTime(TimeInterval ?timeInterval = null)
         {
-            //var list = _context.TrainingTypes
-            //     .Join(_context.Trainings, x => x.Id, y => y.IdType, (x, y) => new { x, y })
-            //     .Join(_context.TrainingsSchedules, z => z.y.Id, p => p.IdTraining, (z, p) => new
-            //     {z, p}
-            //   )
-            //    // .Where(x => x.p.IdCamp == 1)
-            //     .GroupBy(x => x.z.x.NameType, x => x.p)
-            //     .Select(x => new TotalTrainingTypesDurationViewModel
-            //     {
-            //         TypeName = x.Key,
-            //         TotalDuration = new TimeSpan(0, (int)x.Sum(y => y.Duration), 0),
-            //     }).ToList();
-
-            //foreach (var v in list)
-            //{
-            //    Debug.WriteLine(v.TypeName + " " + v.TotalDuration);
-            //}
-
+            
             var camps = _context.CampsPeriods
                 .Where(x => (timeInterval != null) ? (x.Start >= timeInterval.StartIntervalTime && x.End <= timeInterval.EndIntervalTime) : true)
                 .ToList();
@@ -400,7 +371,12 @@ namespace ArtBiathlon.Controllers
         [HttpGet]
         public IActionResult TotalTrainingTypesTime(TimeInterval? timeInterval = null)
         {
-            _timeInterval = (timeInterval.StartIntervalTime == DateTime.MinValue && timeInterval.EndIntervalTime == DateTime.MinValue) ? null :  timeInterval;
+            _timeInterval =
+                timeInterval != null &&
+                (timeInterval.StartIntervalTime == DateTime.MinValue &&
+                 timeInterval.EndIntervalTime == DateTime.MinValue)
+                    ? null
+                    : timeInterval;
             var getAllTotalTrainingTypesTime = GetAllTotalTrainingTypesTime(_timeInterval);
 
             ViewBag.GetAllTotalTrainingTypesTime = getAllTotalTrainingTypesTime;
@@ -428,11 +404,7 @@ namespace ArtBiathlon.Controllers
 
                 TimeSpan totalTimeInCampPeriod;
                 TimeSpan totalTimeForAllCampPeriods = new TimeSpan();
-                //int columnCount = typeof(TrainingViewModel).GetProperties().Length;
-                //PdfPTable table = new PdfPTable(columnCount);
-
-                // int columnCount = typeof(TrainingViewModel).GetProperties().Length;
-
+                
                 PdfPTable table1 = new PdfPTable(1);
                 Font font2 = new Font(bf, 20, Font.BOLD);
                 //Set the biography  

@@ -30,7 +30,7 @@ namespace ArtBiathlon.Services.Implementations
                     return new BaseResponse<MailingTopic>
                     {
                         StatusCode = StatusCode.AlreadyExists,
-                        Description = "Рассылка с такой темой уже есть"
+                        Description = "Рассылка с такой темой уже существует"
                     };
                 }
 
