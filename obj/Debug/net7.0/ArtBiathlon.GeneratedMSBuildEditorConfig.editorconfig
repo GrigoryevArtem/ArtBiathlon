@@ -88,6 +88,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/artem/Projects/ArtBiathlon/ArtBiathlon/Views/StatisticalForecasting/StatisticalTotalTrainingTimeByCampsDynamicsIndicators.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3RhdGlzdGljYWxGb3JlY2FzdGluZy9TdGF0aXN0aWNhbFRvdGFsVHJhaW5pbmdUaW1lQnlDYW1wc0R5bmFtaWNzSW5kaWNhdG9ycy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/artem/Projects/ArtBiathlon/ArtBiathlon/Views/Support/Answer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3VwcG9ydC9BbnN3ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

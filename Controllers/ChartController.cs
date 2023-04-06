@@ -128,7 +128,7 @@ public class ChartController : Controller
         {
             dataChart[j] = new object[]
             {
-                i.TimeInterval.StartIntervalTime.ToShortDateString() + "-" + i.TimeInterval.StartIntervalTime.ToShortDateString(),
+                i.TimeInterval.StartIntervalTime.ToShortDateString() + "-" + i.TimeInterval.EndIntervalTime.ToShortDateString(),
                 i.TotalDuration.TotalMinutes
             };
             j++;
