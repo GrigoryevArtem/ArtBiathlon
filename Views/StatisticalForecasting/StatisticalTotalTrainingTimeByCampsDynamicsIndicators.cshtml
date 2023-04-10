@@ -1,3 +1,4 @@
+@using System.Globalization
 <link rel="stylesheet" href="~/css/GraphicsStyle.css" />
 
 <body>
@@ -14,14 +15,14 @@
         <th colspan=2 style="text-align: center;">Темп роста, %</th>
         <th colspan=2 style="text-align: center;">Темп прироста, %</th>
         <tr>
-            <td style="text-align: center;">Цепной</td>
-            <td style="text-align: center;">Базисный</td>
+            <th style="text-align: center;">Цепной</th>
+            <th style="text-align: center;">Базисный</th>
             
-            <td style="text-align: center;">Цепной</td>
-            <td style="text-align: center;">Базисный</td>
-            
-            <td style="text-align: center;">Цепной</td>
-            <td style="text-align: center;">Базисный</td>
+            <th style="text-align: center;">Цепной</th>
+            <th style="text-align: center;">Базисный</th>
+           
+            <th style="text-align: center;">Цепной</th>
+            <th style="text-align: center;">Базисный</th>
         </tr>
            
     </tr>
@@ -74,121 +75,311 @@
 </table>
 
 <div id="chart" ></div>
+
     <br>
-        <h5 style="width: 1200px;">На графике отчётливо прослеживаются периодические сезонные колебания. Ежемесячные периодические снижения тренировочного времени свиедетельствуют о прерывании тренировочных сборов на период соревнований, праздничных дней или летних каникул, когда не проводятся тренировочные сборы у спортсменов при неизменном тренде.</h5>
-    <br>
+          <h5 style="width: 1200px;">На графике отчётливо прослеживаются периодические сезонные колебания. Ежемесячные периодические снижения тренировочного времени свиедетельствуют о прерывании тренировочных сборов на период соревнований, праздничных дней или летних каникул, когда не проводятся тренировочные сборы у спортсменов при неизменном тренде.</h5>
+<br>
+
+<table id = 1>
+    <tr>
+        <th rowspan = 2 style="text-align: center;">Период</th>
+        <th rowspan = 2 style="text-align: center;">Фактическое значение</th>
+        <th colspan = 2 style="text-align: center;">Скользящие средние</th>
+        <th rowspan=2 style="text-align: center;">Взвешенная скользящая средняя l = 5</th>
+              
+        <tr>
+            <th style="text-align: center;">l = 3</th>
+            <th style="text-align: center;">l = 7</th>
+        </tr>
+    <tr>
+    
+    @if (ViewBag.MovingAveragesForTotalTrainingCampsDuration is not null)
+    {
+        @foreach(var element in ViewBag.MovingAveragesForTotalTrainingCampsDuration as IEnumerable<MovingAveragesViewModel>)
+        {
+            <tr>
+                <td style="text-align: center;">@element.Id</td>
+                <td style="text-align: center;">@element.Value</td>
+                <td style="text-align: center;">@((element.IntervalLengthThree == null) ? "–" : element.IntervalLengthThree?.ToString("0.00"))</td>
+                <td style="text-align: center;">@((element.IntervalLengthSeven == null) ? "–" : element.IntervalLengthSeven?.ToString("0.00"))</td>
+                <td style="text-align: center;">@((element.IntervalLengthFive == null) ? "–" : element.IntervalLengthFive?.ToString("0.00"))</td>
+            </tr>
+        }
+    }
+</table>
+
+<div id="chart4"></div>
+
 <div id="chart2" ></div>
     <br>
         <h5 style="width: 1200px;">На графике отчётливо прослеживаются периодические сезонные колебания. Ежемесячные периодические снижения количества тренировок в день свиедетельствуют о прерывании тренировочных сборов на период соревнований, праздничных дней или летних каникул, когда не проводятся тренировочные сборы у спортсменов при неизменном тренде.</h5>
-    <br>
+<br>
+
+<table>
+    <tr>
+        <th rowspan = 2 style="text-align: center;">Период</th>
+        <th rowspan = 2 style="text-align: center;">Фактическое значение</th>
+        <th colspan = 2 style="text-align: center;">Скользящие средние</th>
+        <th rowspan=2 style="text-align: center;">Взвешенная скользящая средняя l = 5</th>
+              
+        <tr>
+            <th style="text-align: center;">l = 3</th>
+            <th style="text-align: center;">l = 7</th>
+        </tr>
+    </tr>
+    
+    @if (ViewBag.MovingAveragesForTotalTrainingCampsCount is not null)
+    {
+        @foreach(var element in ViewBag.MovingAveragesForTotalTrainingCampsCount as IEnumerable<MovingAveragesViewModel>)
+        {
+            <tr>
+                <td style="text-align: center;">@element.Id</td>
+                <td style="text-align: center;">@element.Value</td>
+                <td style="text-align: center;">@((element.IntervalLengthThree == null) ? "–" : element.IntervalLengthThree?.ToString("0.00"))</td>
+                <td style="text-align: center;">@((element.IntervalLengthSeven == null) ? "–" : element.IntervalLengthSeven?.ToString("0.00"))</td>
+                <td style="text-align: center;">@((element.IntervalLengthFive == null) ? "–" : element.IntervalLengthFive?.ToString("0.00"))</td>
+            </tr>
+        }
+    }
+</table>
+
+<div id="chart5"></div>
+
 <div id="chart3"></div>
     <br>
         <h5 style="width: 1200px;">На графике отчётливо прослеживаются периодические сезонные колебания. Ежемесячные периодические снижения количества рассылок сообщений в день свиедетельствуют о прерывании тренировочных сборов на период праздничных дней, например, в январе или период летних каникул в июне, когда не проводятся тренировочные сборы у спортсменов при неизменном тренде.</h5>
     <br>
+
+<table>
+    <tr>
+        <th rowspan = 2 style="text-align: center;">Период</th>
+        <th rowspan = 2 style="text-align: center;">Фактическое значение</th>
+        <th colspan = 2 style="text-align: center;">Скользящие средние</th>
+        <th rowspan=2 style="text-align: center;">Взвешенная скользящая средняя l = 5</th>
+              
+        <tr>
+            <th style="text-align: center;">l = 3</th>
+            <th style="text-align: center;">l = 7</th>
+        </tr>
+    </tr>
+    
+    @if (ViewBag.MovingAveragesForTotalDayMailingCount is not null)
+    {
+        @foreach(var element in ViewBag.MovingAveragesForTotalDayMailingCount as IEnumerable<MovingAveragesViewModel>)
+        {
+            <tr>
+                <td style="text-align: center;">@element.Id</td>
+                <td style="text-align: center;">@element.Value</td>
+                <td style="text-align: center;">@((element.IntervalLengthThree == null) ? "–" : element.IntervalLengthThree?.ToString("0.00"))</td>
+                <td style="text-align: center;">@((element.IntervalLengthSeven == null) ? "–" : element.IntervalLengthSeven?.ToString("0.00"))</td>
+                <td style="text-align: center;">@((element.IntervalLengthFive == null) ? "–" : element.IntervalLengthFive?.ToString("0.00"))</td>
+            </tr>
+        }
+    }
+</table>
+
+
+<div id="chart6"></div>
 
 </body>
 
 
 @if (ViewBag.TotalTrainingTimeForTrainingCamps is not null)
 {
-@section Scripts
-{
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        
-    <script type="text/javascript">
+    @section Scripts
+    {
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            
+        <script type="text/javascript">
 
-        // Load the Visualization API and the corechart package.
-        google.charts.load('current', {'packages':['corechart']});
-
-         // Set a callback to run when the Google Visualization API is loaded.
-         google.charts.setOnLoadCallback(drawChart);
-        
-          // Callback that creates and populates a data table,
-          // instantiates the pie chart, passes in the data and
-          // draws it.
-          function drawChart() {
-    
-       
-          var data = google.visualization.arrayToDataTable([
-          ['Дата', 'Общее тренировочное время за день, мин'],
-          
-          @foreach (var d in ViewBag.TotalDayTrainingDuration as IEnumerable<TotalDayTrainingDurationView>) {
-              <text>[new Date(@d.Date.Year, @d.Date.Month, @d.Date.Day), @d.TotalDuration.TotalMinutes],</text>
-          }
-          ]);
-          
-          var options = {
-            title: 'График общего время тренировочного процесса по дням',
-            curveType: 'function',
-            legend: { position: 'bottom' }, 
-            height: 500,
-            width: 1200
-          };
-
-            // Instantiate and draw our chart, passing in some options.
-             var chart = new google.visualization.LineChart(document.getElementById('chart'));
-                   chart.draw(data, options);
-          }
-    </script>
-    
-    <script type="text/javascript">
-    
             google.charts.load('current', {'packages':['corechart']});
-            google.charts.setOnLoadCallback(drawChart);
-          
-            function drawChart() {
-    
-       
-            var data = google.visualization.arrayToDataTable([
-            ['Дата', 'Количество тренировок за день'],
-          
-            @foreach (var d in ViewBag.TotalDayTrainingCount as IEnumerable<TotalDayTrainingCountView>) {
-                <text>[new Date(@d.Date.Year, @d.Date.Month, @d.Date.Day), @((d.TrainingCount == 2) ? 0 : d.TrainingCount)],</text>
-            }
-            ]);
-          
-            var options = {
-              title: 'График количества тренировок по дням',
-              curveType: 'function',
-              legend: { position: 'bottom' }, 
-              height: 500,
-              width: 1200
-            };
 
-            // Instantiate and draw our chart, passing in some options.
-             var chart = new google.visualization.LineChart(document.getElementById('chart2'));
-                   chart.draw(data, options);
+             google.charts.setOnLoadCallback(drawChart);
+            
+              function drawChart() {
+       
+              var data = google.visualization.arrayToDataTable([
+              ['Дата', 'Общее тренировочное время за день, мин'],
+              
+              @foreach (var d in ViewBag.TotalDayTrainingDuration as IEnumerable<TotalDayTrainingDurationView>) {
+                  <text>[new Date(@d.Date.Year, @d.Date.Month, @d.Date.Day), @d.TotalDuration.TotalMinutes],</text>
               }
-    </script>
-    
-    <script type="text/javascript">
+              ]);
+              
+              var options = {
+                title: 'График общего время тренировочного процесса по дням',
+                curveType: 'function',
+                legend: { position: 'bottom' }, 
+                height: 500,
+                width: 1200
+              };
+
+                 var chart = new google.visualization.LineChart(document.getElementById('chart'));
+                       chart.draw(data, options);
+              }
+        </script>
+        
+        <script type="text/javascript">
         
                 google.charts.load('current', {'packages':['corechart']});
                 google.charts.setOnLoadCallback(drawChart);
               
                 function drawChart() {
-        
-           
+                    
                 var data = google.visualization.arrayToDataTable([
-                ['Дата', 'Количество рассылок за день'],
+                ['Дата', 'Количество тренировок за день'],
               
-                @foreach (var d in ViewBag.TotalDayMailingCount as IEnumerable<TotalDayMailingCountView>) {
-                <text>[new Date(@d.Date.Year, @d.Date.Month, @d.Date.Day), @d.MailingCount],</text>
+                @foreach (var d in ViewBag.TotalDayTrainingCount as IEnumerable<TotalDayTrainingCountView>) {
+                    <text>[new Date(@d.Date.Year, @d.Date.Month, @d.Date.Day), @((d.TrainingCount == 2) ? 0 : d.TrainingCount)],</text>
                 }
                 ]);
               
                 var options = {
-                  title: 'График количества рассылок по дням',
+                  title: 'График количества тренировок по дням',
                   curveType: 'function',
                   legend: { position: 'bottom' }, 
                   height: 500,
                   width: 1200
                 };
-    
-                // Instantiate and draw our chart, passing in some options.
-                 var chart = new google.visualization.LineChart(document.getElementById('chart3'));
+
+                 var chart = new google.visualization.LineChart(document.getElementById('chart2'));
                        chart.draw(data, options);
                   }
         </script>
-}
+        
+        <script type="text/javascript">
+            
+                    google.charts.load('current', {'packages':['corechart']});
+                    google.charts.setOnLoadCallback(drawChart);
+                  
+                    function drawChart() {
+            
+                    var data = google.visualization.arrayToDataTable([
+                    ['Дата', 'Количество рассылок за день'],
+                  
+                    @foreach (var d in ViewBag.TotalDayMailingCount as IEnumerable<TotalDayMailingCountView>) {
+                        <text>[new Date(@d.Date.Year, @d.Date.Month, @d.Date.Day), @d.MailingCount],</text>
+                    }
+                    ]);
+                  
+                    var options = {
+                      title: 'График количества рассылок по дням',
+                      curveType: 'function',
+                      legend: { position: 'bottom' }, 
+                      height: 500,
+                      width: 1200
+                    };
+        
+                     var chart = new google.visualization.LineChart(document.getElementById('chart3'));
+                           chart.draw(data, options);
+                      }
+            </script>
+        
+        <script type="text/javascript">
+                    google.charts.load('current', {
+                        'packages': ['corechart']
+                    });
+                    google.charts.setOnLoadCallback(drawChart);
+        
+                    function drawChart() {
+                        var data = google.visualization.arrayToDataTable([
+                            ['Период', 'Фактические значения', 'l3', 'l7', 'l5'],
+                            
+                            @foreach (var d in ViewBag.MovingAveragesForTotalTrainingCampsDuration as IEnumerable<MovingAveragesViewModel>)
+                            {
+                                <text>[@(d.Id.ToString("0.00", CultureInfo.InvariantCulture)),
+                                 @(d.Value.ToString("0.00", CultureInfo.InvariantCulture)),
+                                  @((d.IntervalLengthThree is null) ? "undefined" : (d.IntervalLengthThree)?.ToString("0.00", CultureInfo.InvariantCulture)),
+                                  @((d.IntervalLengthSeven is null) ? "undefined" : (d.IntervalLengthSeven)?.ToString("0.00", CultureInfo.InvariantCulture)),
+                                  @((d.IntervalLengthFive is null) ? "undefined" : (d.IntervalLengthFive)?.ToString("0.00", CultureInfo.InvariantCulture))],</text>
+                            }                     
+                        ]);
+        
+                        var options = {
+                            title: 'График скользящих средних для общего времени тренировок (мин.) по сборам',
+                            curveType: 'function',
+                            legend: {
+                                position: 'bottom'
+                            },
+                            height: 500,
+                            width: 1200
+                        };
+                        var chart = new google.visualization.LineChart(document.getElementById('chart4'));
+        
+                        chart.draw(data, options);
+                    }
+                </script>
+        
+        
+        <script type="text/javascript">
+                google.charts.load('current', {
+                    'packages': ['corechart']
+                });
+                google.charts.setOnLoadCallback(drawChart);
+
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                        ['Период', 'Фактические значения', 'l3', 'l7', 'l5'],
+                        
+                        @foreach (var d in ViewBag.MovingAveragesForTotalTrainingCampsCount as IEnumerable<MovingAveragesViewModel>)
+                        {
+                            <text>[@(d.Id.ToString("0.00", CultureInfo.InvariantCulture)),
+                             @(d.Value.ToString("0.00", CultureInfo.InvariantCulture)),
+                              @((d.IntervalLengthThree is null) ? "undefined" : (d.IntervalLengthThree)?.ToString("0.00", CultureInfo.InvariantCulture)),
+                              @((d.IntervalLengthSeven is null) ? "undefined" : (d.IntervalLengthSeven)?.ToString("0.00", CultureInfo.InvariantCulture)),
+                              @((d.IntervalLengthFive is null) ? "undefined" : (d.IntervalLengthFive)?.ToString("0.00", CultureInfo.InvariantCulture))],</text>
+                        }       
+                    ]);
+
+                    var options = {
+                        title: 'График скользящих средних для количества тренировок по сборам',
+                        curveType: 'function',
+                        legend: {
+                            position: 'bottom'
+                        },
+                        height: 500,
+                        width: 1200
+                    };
+                    var chart = new google.visualization.LineChart(document.getElementById('chart5'));
+
+                    chart.draw(data, options);
+                }
+            </script>
+        
+        <script type="text/javascript">
+                google.charts.load('current', {
+                    'packages': ['corechart']
+                });
+                google.charts.setOnLoadCallback(drawChart);
+    
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                        ['Период', 'Фактические значения', 'l3', 'l7', 'l5'],
+                        
+                        @foreach (var d in ViewBag.MovingAveragesForTotalDayMailingCount as IEnumerable<MovingAveragesViewModel>)
+                        {
+                            <text>[@(d.Id.ToString("0.00", CultureInfo.InvariantCulture)),
+                             @(d.Value.ToString("0.00", CultureInfo.InvariantCulture)),
+                              @((d.IntervalLengthThree is null) ? "undefined" : (d.IntervalLengthThree)?.ToString("0.00", CultureInfo.InvariantCulture)),
+                              @((d.IntervalLengthSeven is null) ? "undefined" : (d.IntervalLengthSeven)?.ToString("0.00", CultureInfo.InvariantCulture)),
+                              @((d.IntervalLengthFive is null) ? "undefined" : (d.IntervalLengthFive)?.ToString("0.00", CultureInfo.InvariantCulture))],</text>
+                        } 
+                    ]);
+    
+                    var options = {
+                        title: 'График скользящих средних для количества рассылок по месяцам',
+                        curveType: 'function',
+                        legend: {
+                            position: 'bottom'
+                        },
+                        height: 500,
+                        width: 1200
+                    };
+                    var chart = new google.visualization.LineChart(document.getElementById('chart6'));
+    
+                    chart.draw(data, options);
+                }
+            </script>
+
+    }
 }
