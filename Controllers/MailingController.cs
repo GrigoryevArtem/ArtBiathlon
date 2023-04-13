@@ -11,17 +11,24 @@ namespace ArtBiathlon.Controllers
     [Authorize(Roles = "Trainer")]
     public class MailingController : Controller
     {
-        private readonly IMailingService _mailingService;
+        //private readonly IMailingService _mailingService;
         ApplicationDbContext _context;
-        public MailingController(IMailingService mailingService)
+       
+        /*public MailingController(IMailingService mailingService)
         {
             _mailingService = mailingService;
+        }*/
+
+        public MailingController(ApplicationDbContext context)
+        {
+            _context = context;
         }
+
 
         [HttpGet]
         public async Task<IActionResult> Topic()
         {
-            var list = _mailingService.GetAll().Result.Data;
+            var list = _context.MailingTopics.ToList();                                                                                                     
             ViewBag.Mailings = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(list, "Id", "Title");
 
             return View();

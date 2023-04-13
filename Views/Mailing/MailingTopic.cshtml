@@ -4,14 +4,14 @@
 
 <link rel="stylesheet" href="~/css/SupportStyle.css" />
 
-@using (Html.BeginForm("Topic", "Admin", FormMethod.Post))
+@using (Html.BeginForm("Topic", "Mailing", FormMethod.Post))
 {
         <div class="first_inner_div">
             <div class = "card_div">
                  <h3>Рассылка сообщений</h3>
             </div>
 
-        @Html.DropDownListFor(x => x.Id, ViewBag.Users as SelectList)
+        @Html.DropDownListFor(x => x.Id, ViewBag.Mailings as SelectList)
 
         @Html.TextArea("message","",new { @class = "topics"})
             <input class="custom_button" type="submit" value="Отправить" />
