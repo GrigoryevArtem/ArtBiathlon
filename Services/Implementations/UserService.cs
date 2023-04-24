@@ -69,7 +69,7 @@ namespace ArtBiathlon.Services.Implementations
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"[UserSerivce.GetUsers] error: {ex.Message}");
+                _logger.LogError(ex, $"[UserSerivce.GetAll] error: {ex.Message}");
                 return new BaseResponse<IEnumerable<User>>()
                 {
                     StatusCode = StatusCode.InternalServerError,
@@ -104,13 +104,12 @@ namespace ArtBiathlon.Services.Implementations
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"[UserSerivce.DeleteUser] error: {ex.Message}");
-                return new BaseResponse<bool>()
+                return new BaseResponse<bool>
                 {
                     StatusCode = StatusCode.InternalServerError,
                     Description = $"Внутренняя ошибка: {ex.Message}"
                 };
             }
         }
-
     }
 }

@@ -8,7 +8,7 @@ using ArtBiathlon.DataEntity;
 
 namespace ArtBiathlon.Models
 {
-    public static class Initializer
+    public static class Startup
     {
         public static void InitializeRepositories(this IServiceCollection services)
         {
@@ -19,6 +19,8 @@ namespace ArtBiathlon.Models
             services.AddScoped<IBaseRepository<Mailing>, MailingRepository>();
             services.AddScoped<IBaseRepository<MailingTopic>, MailingTopicRepository>();
             services.AddScoped<IBaseRepository<MailingTopicSubscriber>, MailingTopicSubscriberRepository>();
+            services.AddScoped<IBaseRepository<HrvIndicator>, HrvIndicatorsRepository>();
+            
             //services.AddScoped<IBaseRepository<Indicator>, IndicatorRepository>();
             //services.AddScoped<IBaseRepository<Training>, TrainingRepository>();
             //services.AddScoped<IBaseRepository<TrainingTemplate>, TrainingTemplateRepository>();
@@ -35,6 +37,7 @@ namespace ArtBiathlon.Models
             services.AddScoped<IMailingService, MailingService>();
             services.AddScoped<IMailingTopicService, MailingTopicService>();
             services.AddScoped<IMailingTopicSubscriberService, MailingTopicSubscriberService>();
+            services.AddScoped<IHrvIndicatorService, HrvIndicatorService>();
         }
     }
 }
