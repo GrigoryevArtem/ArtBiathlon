@@ -1,55 +1,140 @@
 ﻿@model ArtBiathlon.DataEntity.MailingTopic
-@{
-}
 
-<link rel="stylesheet" href="~/css/SupportStyle.css" />
-<body>
-@using (Html.BeginForm("Topic", "Admin", FormMethod.Post))
-{
-    <div class="content">
-        <div class="card">
-            <h3>Рассылка сообщений</h3>
-        </div>
+<link rel="stylesheet" href="~/css/CustomStyles.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
-            @Html.DropDownListFor(x => x.Id, ViewBag.Mailings as SelectList, new {@class = "topics"})
-        @Html.TextArea("message","",new {@class = "custom_text"})
-        <input class="custom_button" type="submit" value="Отправить" />
+<body>                                                                                          
+<div class="content">
+    <div class="card">
+        <h3>Рассылка сообщений</h3>
     </div>
-}
 
-@using (Html.BeginForm("DeleteTopic", "Admin", FormMethod.Post))
-{
-    <div class="content2">
-        <div class="card">
-            <h3>Удаление рассылки</h3>
-        </div>
-            @Html.DropDownListFor(x => x.Id, ViewBag.Mailings as SelectList, new {@class = "topics"})
-    <input class="custom_button" type="submit" value="Удалить" />
+    <div class="unifying_div">
+        @Html.DropDownListFor(x => x.Id, ViewBag.Mailings as SelectList, new {@class = "topics"})
+            
+        <details class="modal-open">
+            <summary class="btn btn-primary" style="background: green; margin-left: 5px">
+                <i class='fa fa-plus'></i>
+            </summary>
+            <div class="modal show" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Добавление темы рассылки </h5>
+                            <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                                               
+                            @using (Html.BeginForm("AddTopic", "Mailing", FormMethod.Post))
+                            {
+                                @Html.TextBox("newTopic","", new {@class= "text-input-new-topic"})
+                                <input class="custom_button" type="submit" value="Добавить" />
+                            }  
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
+            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </details>
+            
+        <details class="modal-open">
+                        
+            <summary class="btn btn-primary" style="background: red">
+                <i class='fa fa-minus'></i>
+            </summary>
+                
+            <div class="modal show" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Удаление темы рассылки </h5>
+                            <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                                                   
+                            @using (Html.BeginForm("DeleteTopic", "Mailing", FormMethod.Post))
+                            {
+                                @Html.DropDownListFor(x => x.Id, ViewBag.Mailings as SelectList, new {@class = "topics"})
+                                <input class="custom_button" type="submit" value="Удалить" />
+                            }
+                                                   
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
+                
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </details>
+            
+        <details class="modal-open">
+                                            
+            <summary class="btn btn-primary" style="background: blue">
+                <i class='fa fa-edit'></i>
+            </summary>
+                
+            <div class="modal show" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Редактирование темы рассылки </h5>
+                            <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                                                   
+                            @using (Html.BeginForm("UpdateTopic", "Mailing", FormMethod.Post))
+                            {
+                                @Html.DropDownListFor(x => x.Id, ViewBag.Mailings as SelectList, new {@class = "topics"})
+                                @Html.TextBox("updateTopic","",new {@class = "text-input-new-topic"})
+                                <input class="custom_button" type="submit" value="Изменить" />
+                            }
+                                                   
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
+                
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </details>
     </div>
-}
-
-
-@using (Html.BeginForm("AddTopic", "Admin", FormMethod.Post))
-{
-        <div class="content2">
-        <div class="card">
-            <h3>Добавление рассылки</h3>
-        </div>
-            @Html.TextBox("newTopic","", new {@class= "text-input-new-topic"})
-             <input class="custom_button" type="submit" value="Добавить" />
-      </div>
-}
-
-@using (Html.BeginForm("UpdateTopic", "Admin", FormMethod.Post))
-{
-    <div class="content2">
-        <div class="card">
-            <h3>Редактирование рассылки</h3>
-        </div>
-            @Html.DropDownListFor(x => x.Id, ViewBag.Mailings as SelectList, new {@class = "topics"})
-            @Html.TextBox("updateTopic","",new {@class = "text-input-new-topic"})
-    <input class="custom_button" type="submit" value="Изменить" />
-    </div>
-}
-
+        
+        
+    @using (Html.BeginForm("Topic", "Mailing", FormMethod.Post))
+    {
+        @Html.TextArea("message", "", new { @class = "custom_text" })
+    }
+    <input class="custom_button" type="submit" value="Отправить" />
+</div>
 </body>
+
+    @section Scripts
+{
+    <script >
+    document.querySelectorAll('.close-modal').forEach(el => {
+  el.onclick = () => {
+    const details = el.closest('details')
+    details.open = !details.open
+  };
+})
+
+document.querySelectorAll('.open-modal').forEach(el => {
+  el.onclick = () => {
+    const details = document.body.querySelector('details')
+    details.open = true
+  };
+})
+</script>
+}
