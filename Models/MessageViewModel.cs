@@ -14,9 +14,9 @@ namespace ArtBiathlon.Models
 
         public DateTime Date { get; set; }
 
-        public List<User?> LikedUsers { get; set; }
+        public List<User> LikedUsers { get; set; }
 
-        public List<User?> DislikedUsers { get; set; }
+        public List<User> DislikedUsers { get; set; }
 
         public uint NestingLevel { get; set; }
 
