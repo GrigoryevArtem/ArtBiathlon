@@ -42,7 +42,7 @@ namespace ArtBiathlon.Controllers
                 .Select(topic => topic.UserId)
                 .ToList();
 
-            var topic = _context.MailingTopics.FirstOrDefault(topic => topic.Id == id).Title;
+            var topic = _context.MailingTopics.FirstOrDefault(topic => topic.Id == id)?.Title;
 
             var users = _context.Users.Where(user => indexes.Contains((int)user.Id)).ToList();
 
@@ -55,15 +55,11 @@ namespace ArtBiathlon.Controllers
         }
 
         [NonAction]
-        private async Task MailingTopics(List<User> users, string topic, string message)
+        private async Task MailingTopics(IReadOnlyCollection<User> users, string topic, string message)
         {
-            for (int i = 0; i < users.Count; i++)
+            foreach (var sender in from t in users where !string.IsNullOrEmpty(t.Email) select new MailSender("artbiathlon@mail.ru", t.Email, "ArtBiathlon"))
             {
-                if (!string.IsNullOrEmpty(users[i].Email))
-                {
-                    var sender = new MailSender("artbiathlon@mail.ru", users[i].Email, "ArtBiathlon");
-                    await sender.Send(topic, message);
-                }
+                await sender.Send(topic, message);
             }
         }
 
@@ -74,7 +70,7 @@ namespace ArtBiathlon.Controllers
             _context.MailingTopics.Remove(topic);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Topic", "Admin");
+            return RedirectToAction("Topic", "Mailing");
         }
 
         [HttpPost]
@@ -87,7 +83,7 @@ namespace ArtBiathlon.Controllers
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToAction("Topic", "Admin");
+            return RedirectToAction("Topic", "Mailing");
 
         }
 
@@ -99,7 +95,7 @@ namespace ArtBiathlon.Controllers
             _context.MailingTopics.Update(topic);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Topic", "Admin");
+            return RedirectToAction("Topic", "Mailing");
         }
     }
 }
