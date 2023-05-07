@@ -1,6 +1,6 @@
 ﻿@model ArtBiathlon.DataEntity.User
 
-<link rel="stylesheet" href="~/css/StyleSheet.css" />
+<link rel="stylesheet" href="~/css/CustomStyles.css" />
 
 @if(User.Identity.IsAuthenticated)
 {
@@ -44,19 +44,7 @@
                     <input class="custom_button" name="message" type="text" /><br />
                     <input class="custom_button" type="submit" value="Отправить">
                 </form>
-
-            @if (User.IsInRole("Trainer"))
-            {
-                <div>
-                    <h5 style="color: white">Статистика по рассылкам:</h5>
-                  
-                    @foreach(var pair in ViewBag.TitlesDictionary)
-                    {
-                        <h5 style ="color: white">@pair.Key: @pair.Value.Item1 (@pair.Value.Item2 пользователя) (@pair.Value.Item3 подписчика)</h5>
-                    }
-
-                </div>
-            }
+            
             </div>
 
       

@@ -1,6 +1,6 @@
 ﻿@model List<MessageViewModel>
 
-<link rel="stylesheet" href="~/css/ForumStyle.css" />
+<link rel="stylesheet" href="~/css/CustomStyles.css" />
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
@@ -81,9 +81,9 @@
                                             </thead>
                                             <tbody>
                                                 @{
-                                                    int maxSize = Math.Max(message.LikedUsers.Count, message.DislikedUsers.Count);
+                                                    var maxSize = Math.Max(message.LikedUsers.Count, message.DislikedUsers.Count);
                                                 }
-                                                @for (int i = 0; i < maxSize; i++)
+                                                @for (var i = 0; i < maxSize; i++)
                                                 {
                                                     <tr>
                                                         <td>@(message.LikedUsers.Count > i ? message.LikedUsers[i].FIO : string.Empty)</td>
@@ -141,8 +141,6 @@
     }
 </div>
 
-
-
 @section Scripts
     {
     <script >
@@ -150,14 +148,14 @@
   el.onclick = () => {
     const details = el.closest('details')
     details.open = !details.open
-  }
+  };
 })
 
 document.querySelectorAll('.open-modal').forEach(el => {
   el.onclick = () => {
     const details = document.body.querySelector('details')
     details.open = true
-  }
+  };
 })
 </script>
 }
