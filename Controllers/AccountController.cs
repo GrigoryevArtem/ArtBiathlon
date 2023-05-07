@@ -29,19 +29,17 @@ namespace ArtBiathlon.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(AuthorizationModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return View(model);
+            var response = await _accountService.Login(model);
+            if (response.StatusCode == Enums.StatusCode.OK)
             {
-                var response = await _accountService.Login(model);
-                if (response.StatusCode == Enums.StatusCode.OK)
-                {
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                        new ClaimsPrincipal(response.Data));
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                    new ClaimsPrincipal(response.Data));
 
-                    return RedirectToAction("Index", "Home");
-                }
-
-                ModelState.AddModelError("", response.Description);
+                return RedirectToAction("Index", "Home");
             }
+
+            ModelState.AddModelError("", response.Description);
 
             return View(model);
         }

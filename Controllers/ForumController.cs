@@ -5,7 +5,7 @@ using ArtBiathlon.DataEntity;
 
 using ArtBiathlon.Models;
 
-namespace WebRunApplication.Controllers
+namespace ArtBiathlon.Controllers
 {
     public class ForumController : Controller
     {
@@ -32,7 +32,7 @@ namespace WebRunApplication.Controllers
             {
                 Id = x.Id,
                 ParentId = x.ParentId,
-                Fullname = _context.Users.FirstOrDefault(z => z.Id == x.UserId).FIO,
+                Fullname = _context.Users.FirstOrDefault(z => z.Id == x.UserId)!.FIO,
                 Message = x.Message,
                 Date = x.Date,
                 LikedUsers = _context.Users.Join(_context.ForumReactions.Where(y => y.IsLike && y.MessageId == x.Id), u => u.Id, fr => fr.UserId,
@@ -45,9 +45,9 @@ namespace WebRunApplication.Controllers
 
             var result = new List<MessageViewModel>();
 
-            for (int i = 0; i < list.Count; i++)
+            foreach (var t in list)
             {
-                if (list[i].ParentId is null) result = GetMessages(result, list, list[i], 0);
+                if (t.ParentId is null) result = GetMessages(result, list, t, 0);
                 else break;
             }
 
@@ -66,12 +66,8 @@ namespace WebRunApplication.Controllers
             currentMessage.NestingLevel = currentLevel;
             result.Add(currentMessage);
             var list = messageViewModels.Where(m => m.ParentId == currentMessage.Id).OrderByDescending(x => x.Date).ToList();
-            for (int i = 0; i < list.Count; i++)
-            {
-                result = GetMessages(result, messageViewModels, list[i], currentLevel + 1);
-            }
 
-            return result;
+            return list.Aggregate(result, (current, t) => GetMessages(current, messageViewModels, t, currentLevel + 1));
         }
 
         [HttpPost]

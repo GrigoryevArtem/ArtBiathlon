@@ -30,7 +30,7 @@ public class ChartController : Controller
     {
         var trainingsTypes = _context.TrainingTypes.ToList();
         
-        ViewBag.TrainingTypes = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(trainingsTypes, "Id", "NameType");;
+        ViewBag.TrainingTypes = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(trainingsTypes, "Id", "NameType");
         
         
         var trainingDictionary =

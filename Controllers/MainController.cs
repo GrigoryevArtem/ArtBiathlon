@@ -30,15 +30,6 @@ namespace ArtBiathlon.Controllers
         public async Task<IActionResult> PersonalAccount()
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Login == User.Identity.Name);
-        
-            ViewBag.TitlesDictionary = _context.MailingTopics.Join(_context.Mailings, t => t.Id, m => m.MailingTopicId, (t, m) => new
-            {
-                TitleTopic = t.Title,
-                SubscribeCount = _context.Mailings.Count(x => x.MailingTopicId == t.Id),
-                UsersCount = _context.MailingTopicSubscribers.Count(x => x.MailingTopicId == t.Id),
-                Subscribers = _context.MailingTopicSubscribers.Where(x => x.MailingTopicId == t.Id).GroupBy(x => x.UserId).Count()
-            }).ToDictionary(x => x.TitleTopic, x => (x.SubscribeCount, x.UsersCount, x.Subscribers));
-
             return View(user);
         }
 
